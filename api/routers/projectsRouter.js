@@ -26,10 +26,8 @@ router.get('/:id', validateProjectId, (req, res) =>{
 
 // Get project actions
 router.get('/:id/actions', validateProjectId, (req,res) =>{
-    console.log('Called?');
     const {id} = req.params;
     Projects.getProjectActions(id).then(actions =>{
-        console.log(actions);
         res.status(200).json(actions);
     }).catch(error =>{
         res.status(500).json({error: "An error aoccurred while getting the project actions."})
