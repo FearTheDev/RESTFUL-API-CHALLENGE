@@ -1,5 +1,5 @@
 const express = require('express');
-const projectsRouter = require('./routers/projectsRouter');
+const projectsRouter = require('./api/routers/projectsRouter');
 
 const server = express();
 server.use(express.json());
@@ -7,7 +7,16 @@ server.use(express.json());
 server.use('/api/projects', projectsRouter);
 
 server.get('/', (req,res) =>{
-    res.status(200).json({message: "Server is up and running!"});
+    res.status(200).send(`
+    <div style="font-family:verdana;">
+        <h1>WEB API SPRINT SERVER</h1>
+        <p style="color:green;">Server is up and running!</p>
+        <br>
+        <p>Use /api/projects</p>
+        <ul>
+            <li>GET /api/projects/:id - Get all actions for a project by id</li>
+        </ul>
+    </div>`);
 });
 
 module.exports = server;
