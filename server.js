@@ -14,7 +14,9 @@ server.get('/', (req,res) =>{
         <br>
         <p>Use /api/projects</p>
         <ul>
-            <li>GET /api/projects/:id - Get all actions for a project by id</li>
+            <li>GET /api/projects/ - Get all projects</li>
+            <li>GET /api/projects/:id - Get project and it's actions</li>
+            <li>POST /api/projects/ - Add a new project to the db requires(name & description)</li>
         </ul>
     </div>`);
 });
