@@ -39,4 +39,20 @@ router.post('/', (req, res) =>{
     }
 });
 
+// Update existing project information
+router.put('/:id', validateProjectId, (req, res) =>{
+    const {id} = req.params;
+    const {name, description} = req.body;
+
+    if(name && description){
+        Projects.update(id, {name, description}).then(project =>{
+            res.status(200).json(project);
+        }).catch(error =>{
+            res.status(500).json({error: "something went wrong while updating the project info"});
+        });
+    }else{
+        res.status(400).json({error: "name and description are required to update a project"});
+    }
+});
+
 module.exports = router;
