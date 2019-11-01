@@ -24,6 +24,18 @@ router.get('/:id', validateProjectId, (req, res) =>{
     });
 });
 
+// Get project actions
+router.get('/:id/actions', validateProjectId, (req,res) =>{
+    console.log('Called?');
+    const {id} = req.params;
+    Projects.getProjectActions(id).then(actions =>{
+        console.log(actions);
+        res.status(200).json(actions);
+    }).catch(error =>{
+        res.status(500).json({error: "An error aoccurred while getting the project actions."})
+    })
+});
+
 // Add new project to the database
 router.post('/', (req, res) =>{
     const {name, description} = req.body;
@@ -53,6 +65,16 @@ router.put('/:id', validateProjectId, (req, res) =>{
     }else{
         res.status(400).json({error: "name and description are required to update a project"});
     }
+});
+
+// Remove a project
+router.delete('/:id', validateProjectId, (req,res) =>{
+    const {id} = req.params;
+    Projects.remove(id).then(result =>{
+        res.status(200).json({message: "Success"});
+    }).catch(error =>{
+        res.status(500).json({error: "An error occurred while attemping to remove project."})
+    })
 });
 
 module.exports = router;

@@ -14,11 +14,19 @@ server.get('/', (req,res) =>{
         <h1>WEB API SPRINT SERVER</h1>
         <p style="color:green;">Server is up and running!</p>
         <br>
-        <p>Use /api/projects</p>
+        <h2>Use /api/projects</h2>
         <ul>
+            
             <li>GET /api/projects/ - Get all projects</li>
             <li>GET /api/projects/:id - Get project and it's actions</li>
+            <li>GET /api/projects/:id/actions - Get actions for project</li>
             <li>POST /api/projects/ - Add a new project to the db requires(name & description)</li>
+            <li>PUT /api/projects/:id - Delete a project by id</li>
+        </ul>
+
+        <h2>Use /api/actions</h2>
+        <ul>
+            <li>GET /api/actions/:id - get action by id </li>
         </ul>
     </div>`);
 });
